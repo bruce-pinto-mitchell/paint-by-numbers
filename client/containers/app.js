@@ -1,30 +1,38 @@
 import React, {Component} from 'react';
-import InputPreview from '../components/InputPreview';
 import {connect} from 'react-redux';
-import {setMessage} from '../actions/message';
 import {Link} from 'react-router-dom';
 
 class App extends Component {
-  constructor() {
-    super();
-    this._onChange = (value) => {
-      this.props.dispatch(setMessage(value))
+    constructor() {
+        super();
+        this.props.images = this.getImagePaths();
     }
-  }
 
-  render() {
-    const {message} = this.props.messageReducer;
-    return (
-      <div>
-        <InputPreview
-          value={message}
-          onChange={this._onChange}/>
-        <Link to="/about">
-          <button>Go to About</button>
-        </Link>
-      </div>
-    )
-  }
+    getImagePaths() {
+        const imagesArr = [],
+            imageSrcPrefix = '../../images/project/';
+
+        for (let i = 1; i < 391; i++) {
+            imagesArr.push({
+                name: `${i}.jpg`,
+                src: `${imageSrcPrefix}i.jpg`
+            });
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                How would you like to process your image?
+                <Link to="/autoProcess">
+                    <button>Auto Process Image</button>
+                </Link>
+                <Link to="/manualProcess">
+                    <button>Manual Process Image</button>
+                </Link>
+            </div>
+        )
+    }
 }
 
 export default connect(state => state)(App);
