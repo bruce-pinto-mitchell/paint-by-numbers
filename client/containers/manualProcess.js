@@ -6,11 +6,12 @@ export default class ManualProcess extends React.Component {
     constructor(props) {
         super(props)
     }
+
     render() {
         return (
             <div>
                 Please select the Image below you wish to paint by numbers
-                <Carousel images={}/>
+                <Carousel images={this.props.images}/>
                 <Link to="/">
                     <button>Go Home</button>
                 </Link>
